@@ -1,0 +1,40 @@
+{% import "_includes/forms" as forms %}
+
+<form id="element-generate" class="utility" method="post" accept-charset="UTF-8">
+    {{ actionInput('element-generator/utilities/generate-action') }}
+    {{ csrfInput() }}
+
+    {% set generatorOptions = [] %}
+    {% for name, generaotr in generators %}
+        {% set generatorOptions = generatorOptions|merge([{
+            label: name,
+            value: name,
+        }]) %}
+    {% endfor %}
+
+    <h2 class="first">{{ "Generator"|t('element-generator') }}</h2>
+
+    {{ forms.selectField({
+        name: "name",
+        options: generatorOptions,
+    }) }}
+
+    {{ forms.textField({
+        label: 'Total'|t('element-generator'),
+        name: 'total',
+        value: 1,
+        min: 1,
+        step: 1,
+        size: 4,
+        inputmode: 'numeric',
+    }) }}
+
+    <div class="buttons">
+        <button id="generate" type="submit" class="btn submit">{{ 'Generate'|t('app') }}</button>
+        <div class="utility-status"></div>
+    </div>
+</form>
+
+{% block js %}
+
+{% endblock %}

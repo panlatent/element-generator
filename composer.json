@@ -1,0 +1,48 @@
+{
+    "name": "panlatent/element-generator",
+    "type": "craft-plugin",
+    "license": "proprietary",
+    "support": {
+        "email": "panlatent@gmail.com",
+        "issues": "https://github.com/panlatent/element-generator/issues?state=open",
+        "source": "https://github.com/panlatent/element-generator",
+        "docs": "https://github.com/panlatent/element-generator",
+        "rss": "https://github.com/panlatent/element-generator/releases.atom"
+    },
+    "require": {
+        "php": ">=8.1",
+        "craftcms/cms": "^4.8.0",
+        "fakerphp/faker": "^1.23"
+    },
+    "require-dev": {
+        "craftcms/ecs": "dev-main",
+        "craftcms/phpstan": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "panlatent\\craft\\element\\generator\\": "src/"
+        }
+    },
+    "extra": {
+        "handle": "element-generator",
+        "name": "element-generator",
+        "developer": "Panlatent",
+        "documentationUrl": "https://github.com/panlatent/element-generator",
+        "class": "panlatent\\craft\\element\\generator\\Plugin"
+    },
+    "scripts": {
+        "check-cs": "ecs check --ansi",
+        "fix-cs": "ecs check --ansi --fix",
+        "phpstan": "phpstan --memory-limit=1G"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0.2"
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
+    }
+}
