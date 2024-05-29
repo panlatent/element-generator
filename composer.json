@@ -25,7 +25,7 @@
     },
     "extra": {
         "handle": "element-generator",
-        "name": "element-generator",
+        "name": "Element Generator",
         "developer": "Panlatent",
         "documentationUrl": "https://github.com/panlatent/element-generator",
         "class": "panlatent\\craft\\element\\generator\\Plugin"
