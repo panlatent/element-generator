@@ -34,7 +34,7 @@ class Plugin extends \craft\base\Plugin
         ];
     }
 
-    public string $schemaVersion = '1.0.0';
+    public string $schemaVersion = '2.0.0';
 
     public function init(): void
     {
