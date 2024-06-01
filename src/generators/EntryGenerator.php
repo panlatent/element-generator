@@ -41,7 +41,7 @@ class EntryGenerator extends Generator
 
     private function getSection(): Section
     {
-        $section = \Craft::$app->getSections()->getSectionByHandle($this->section);
+        $section = \Craft::$app->getEntries()->getSectionByHandle($this->section);
         if (!$section) {
             throw new InvalidConfigException('Not found section: ' . $this->section);
         }

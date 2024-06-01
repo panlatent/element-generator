@@ -5,7 +5,6 @@ namespace panlatent\craft\element\generator\helpers;
 use Craft;
 use craft\base\ElementInterface;
 use craft\elements\db\ElementQuery;
-use craft\elements\db\MatrixBlockQuery;
 use craft\fields\data\SingleOptionFieldData;
 use Money\Money;
 use yii\helpers\Console;
@@ -49,11 +48,9 @@ abstract class ElementDumper
             }
         }
 
-        if ($element::hasContent()) {
-            $layout = $element->getFieldLayout();
-            foreach ($layout->getVisibleCustomFields($element) as $field) {
-                $var[$field->name] = self::getPrintFieldValue($element->{$field->handle});
-            }
+        $layout = $element->getFieldLayout();
+        foreach ($layout->getVisibleCustomFields($element) as $field) {
+            $var[$field->name] = self::getPrintFieldValue($element->{$field->handle});
         }
 
         if ($element::hasStatuses()) {
@@ -71,18 +68,6 @@ abstract class ElementDumper
     {
         if ($value === null) {
             return 'null';
-        }
-        if ($value instanceof MatrixBlockQuery) {
-            $blocks = $value->all();
-            $blockValues = [];
-            foreach ($blocks as $block) {
-                $values = [];
-                foreach ($block->getFieldLayout()->getCustomFields() as $field) {
-                    $values[] = $field->name . ":" . self::getPrintFieldValue($block->{$field->handle});
-                }
-                $blockValues[] = '[' . implode(', ', $values) . ']';
-            }
-            return '[' . implode(', ', $blockValues) . ']';
         }
 
         if ($value instanceof ElementQuery) {
