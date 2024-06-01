@@ -63,7 +63,7 @@ class Plugin extends \craft\base\Plugin
 
     private function attachEventHandlers(): void
     {
-        Event::on(Utilities::class, Utilities::EVENT_REGISTER_UTILITY_TYPES, function(RegisterComponentTypesEvent $event) {
+        Event::on(Utilities::class, Utilities::EVENT_REGISTER_UTILITIES, function (RegisterComponentTypesEvent $event) {
             $event->types[] = GeneratorsUtility::class;
         });
     }
