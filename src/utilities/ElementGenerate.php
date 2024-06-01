@@ -18,7 +18,7 @@ class ElementGenerate extends Utility
         return 'element-generator';
     }
 
-    public static function iconPath(): ?string
+    public static function icon(): ?string
     {
         return Craft::getAlias('@element-generator/icon-mask.svg');
     }
