@@ -39,8 +39,8 @@ To define your generators, create a new `element-generator.php` file within your
 use panlatent\craft\element\generator\value\Context;
 
 return [
+    'default' => [],
     'generators' => [
-        'default' => [],
         'posts' => function () {
             return [
                 'elementType' => \craft\elements\Entry::class,
