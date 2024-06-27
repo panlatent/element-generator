@@ -10,8 +10,13 @@ Element Generator can generate content for your elements in Craft CMS.
 
 -   :chatgpt:{ .lg .middle } __ChatGPT API integration__
 
--   :material-redhat:{ .lg .middle } __Export to any__
-
-    Database, JSON, CSV
+-   :material-export:{ .lg .middle } __Export to__  Database, JSON or CSV
 
 </div>
+
+### Our Craft Plugins
+
+<div class="grid cards" markdown>
+
+</div>
+
