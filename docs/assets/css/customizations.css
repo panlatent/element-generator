@@ -1,0 +1,13 @@
+
+@font-face {
+    font-family: 'external-link';
+    src: url('../fonts/external-link.woff') format('woff');
+}
+
+.icon-external-link::before {
+    display: inline-block; /* treat similar to text */
+    font-family: 'external-link';
+    content:'\0041'; /* represents "A" which our font renders as an icon instead of the "A" glyph */
+    font-size: 80%; /* icon is a little too big by default, scale it down */
+    margin-right: 4px;
+}
