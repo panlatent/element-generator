@@ -113,6 +113,10 @@ plugins:
       links_attr_map:
         target: _blank
 
+repo_url: https://github.com/panlatent/element-generator
+repo_name: panlatent/element-generator
+edit_uri: edit/main/docs
+
 nav:
   - 'Getting Started':
       - 'index.md'
@@ -120,10 +124,6 @@ nav:
       - 'installation.md'
       - 'configuration.md'
       - 'generation.md'
-  - 'Developers':
+  - 'Development':
       - 'custom-generator.md'
   - '<span class="icon-external-link"></span>Store': 'https://plugins.craftcms.com/element-generator'
-
-repo_url: https://github.com/panlatent/element-generator
-repo_name: panlatent/element-generator
-edit_uri: edit/main/docs
