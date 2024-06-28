@@ -78,6 +78,8 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+      linenums: true
+      linenums_style: pymdownx-inline
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink:
@@ -109,9 +111,6 @@ plugins:
   - search
   - git-revision-date-localized:
       type: timeago
-  - privacy:
-      links_attr_map:
-        target: _blank
 
 repo_url: https://github.com/panlatent/element-generator
 repo_name: panlatent/element-generator
@@ -122,8 +121,12 @@ nav:
       - 'index.md'
       - 'requirements.md'
       - 'installation.md'
-      - 'configuration.md'
-      - 'generation.md'
+  - 'Configuration':
+      - 'config-basic.md'
+      - 'config-options.md'
+      - 'builtin-element-options.md'
+  - 'Usage': 'generation.md'
   - 'Development':
       - 'custom-generator.md'
+  - 'Plugins': 'https://docs.panlatent.com/craft-plugins'
   - '<span class="icon-external-link"></span>Store': 'https://plugins.craftcms.com/element-generator'

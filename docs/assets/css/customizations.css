@@ -37,7 +37,6 @@
     z-index: 1;
 }
 
-
 .highlight.language-bash code {
     padding-left: 2.1764705882em;
     background-color: #1e293b;
@@ -58,4 +57,8 @@
 
 .highlight.language-bash .md-icon {
     color: #fff;
+}
+
+.highlight.language-bash .linenos {
+    display: none;
 }

@@ -13,10 +13,3 @@ Element Generator can generate content for your elements in Craft CMS.
 -   :material-export:{ .lg .middle } __Export to__  Database, JSON or CSV
 
 </div>
-
-### Our Craft Plugins
-
-<div class="grid cards" markdown>
-
-</div>
-
