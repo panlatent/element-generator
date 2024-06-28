@@ -1,0 +1,64 @@
+
+@font-face {
+    font-family: 'external-link';
+    src: url('../fonts/external-link.woff') format('woff');
+}
+
+.icon-external-link::before {
+    display: inline-block; /* treat similar to text */
+    font-family: 'external-link';
+    content:'\0041'; /* represents "A" which our font renders as an icon instead of the "A" glyph */
+    font-size: 80%; /* icon is a little too big by default, scale it down */
+    margin-right: 4px;
+}
+
+.highlight.language-bash pre {
+    background: #1e293b;
+    border: solid #475569;
+    border-radius: 3px 3px 0 0;
+    border-width: 30px 4px 4px;
+    color: #fff;
+    padding-top: 15px;
+    width: 100%;
+    padding-right: 5rem;
+}
+
+.highlight.language-bash pre:before {
+    background-color: rgba(255,255,255,.3);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(255,255,255,.3),20px 0 0 2px rgba(255,255,255,.3),40px 0 0 2px rgba(255,255,255,.3);
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+}
+
+.highlight.language-bash code {
+    padding-left: 2.1764705882em;
+    background-color: #1e293b;
+    color: #fff !important;
+}
+
+.highlight.language-bash code:before {
+    content: "$ ";
+    position: absolute;
+    color: #64748b;
+    font-weight: 700;
+    margin-left: -1em;
+}
+
+.highlight.language-bash code span {
+    color: #fff !important;
+}
+
+.highlight.language-bash .md-icon {
+    color: #fff;
+}
+
+.highlight.language-bash .linenos {
+    display: none;
+}

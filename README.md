@@ -1,102 +1,20 @@
-# element-generator
-Generate content for your elements in Craft CMS.
+<p align="center"><img src="src/icon.svg" width="100" height="100" alt="icon"></p>
+<h1 align="center">Element Generator</h1>
 
+[![Latest Stable Version](https://poser.pugx.org/panlatent/element-generator/v/stable.svg)](https://packagist.org/packages/panlatent/element-generator)
 
-## Requirements
+Generate content for your elements in Craft CMS. It can help you quickly fill website content and is suitable for testing, demonstration, and even production.
 
-This plugin requires Craft CMS 4.8.0 or later, and PHP 8.1 or later.
+## Features
 
-## Installation
+- Faker integration
+- ChatGPT API integration
+- Export to Database, JSON or CSV
 
-You can install this plugin from the Plugin Store or with Composer.
+## Elements
 
-#### From the Plugin Store
+Support all of Craft's built-in types, and it's easy to generate content for your custom element types.
 
-Go to the Plugin Store in your project’s Control Panel and search for “element-generator”. Then press “Install”.
+## Documentation
 
-#### With Composer
-
-Open your terminal and run the following commands:
-
-```bash
-# go to the project directory
-cd /path/to/my-project.test
-
-# tell Composer to load the plugin
-composer require panlatent/element-generator
-
-# tell Craft to install the plugin
-./craft plugin/install element-generator
-```
-
-## Setup
-
-To define your generators, create a new `element-generator.php` file within your `config/` folder. This file should return an array with an generators key, which defines your generators.
-
-```php
-<?php
-
-use panlatent\craft\element\generator\value\Context;
-
-return [
-    'default' => [],
-    'generators' => [
-        'posts' => function () {
-            return [
-                'elementType' => \craft\elements\Entry::class,
-                'section' => 'posts',
-                'values' => function (Context $ctx) {
-                    $title = $ctx->faker->company();
-                    return [
-                        'title' => $title,
-                        'shortName' => mb_substr($title, 0, 4),
-                        // price is matrix field
-                         'price' => [
-                            [
-                                'type' => 'range',
-                                'fields' => [
-                                    'min' => $min,
-                                    'max' => $min + $ctx->faker->numberBetween(10, 100)*5000,
-                                ],
-                            ]
-                        ],
-                        // publishOption is custom field. The closure can inject field object.
-                        'publishOption' => function($field) {
-                            // Context->random provides some quick methods to pick field value.
-                            return $ctx->random->option($field);
-                        }
-                    ];
-                },
-            ];
-        },
-    ],
-];
-```
-
-`Context` is a helper class that helps you generate values. `$ctx->faker` provides common methods for generating data, which you can extend. Powered by [fakerphp/faker](https://github.com/fakerphp/faker)
-
-```php
-use panlatent\craft\element\generator\value\Context;
-
-Event::on(Context::class, Context::EVENT_REGISTER_PROVIDERS, function(RegisterProvidersEvent $event) {
-    $event->providers[] = YourProvider::class;
-})
-```
-
-    Tips: Registering the same class name (full class name) overrides the built-in provider.
-
-
-
-## Usages
-
-### Console
-Generate elements in the console using commands:
-```bash
-craft gen [name] # e.g. ./craft gen posts
-```
-New data will be printed to the terminal by default, use `--save` to save to the database. 
-The `--size` option generates the specified number of elements.
-
-## Development
-
-You can create a new generator to support custom element type.
+Visit the [Documentation](https://docs.panlatent.com/element-generator) for all documentation.
