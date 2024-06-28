@@ -4,6 +4,7 @@ namespace panlatent\craft\element\generator\models;
 
 use Craft;
 use craft\base\Model;
+use craft\helpers\ArrayHelper;
 use panlatent\craft\element\generator\base\GeneratorInterface;
 use panlatent\craft\element\generator\Plugin;
 use yii\base\InvalidConfigException;
@@ -31,7 +32,7 @@ class Settings extends Model
                 throw new InvalidConfigException("Generator {$name} config must be an array or a closure that returns an array");
             }
 
-            $config = array_merge($this->default, $config);
+            $config = ArrayHelper::merge($this->default, $config);
 
             if (!isset($config['class'])) {
                 if (!isset($config['elementType'])) {

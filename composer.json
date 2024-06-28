@@ -2,6 +2,12 @@
     "name": "panlatent/element-generator",
     "type": "craft-plugin",
     "license": "proprietary",
+    "authors": [
+        {
+            "name": "Panlatent",
+            "homepage": "https://panlatent.com"
+        }
+    ],
     "support": {
         "email": "panlatent@gmail.com",
         "issues": "https://github.com/panlatent/element-generator/issues?state=open",
@@ -12,7 +18,9 @@
     "require": {
         "php": ">=8.2",
         "craftcms/cms": "^5.0",
-        "fakerphp/faker": "^1.23"
+        "fakerphp/faker": "^1.23",
+        "guzzlehttp/guzzle": "^7.8",
+        "openai-php/client": "^0.10.1"
     },
     "require-dev": {
         "craftcms/ecs": "dev-main",
@@ -42,7 +50,8 @@
         },
         "allow-plugins": {
             "yiisoft/yii2-composer": true,
-            "craftcms/plugin-installer": true
+            "craftcms/plugin-installer": true,
+            "php-http/discovery": true
         }
     }
 }

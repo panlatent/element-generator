@@ -34,8 +34,6 @@ class Plugin extends \craft\base\Plugin
         ];
     }
 
-    public string $schemaVersion = '1.0.0';
-
     public function init(): void
     {
         parent::init();
