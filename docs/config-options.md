@@ -94,7 +94,7 @@ We can specify Faker language separately to deal with different requirements.
 
 ```php
 'context' => [
-    'faker' => ['locale' => 'en_US'],
+    'components' => ['faker' => ['locale' => 'en_US']],
 ]
 ```
 
@@ -104,11 +104,13 @@ You can define a mapping array to handle this edge case:
 
 ```php
 'context' => [
-    'faker' => [
-        'languages' => [
-            'en' => 'en_US',
+    'components' => [
+        'faker' => [
+            'languages' => [
+                'en' => 'en_US',
+            ]
         ]
-    ]
+    ],
 ],
 ```
 
@@ -125,9 +127,9 @@ The keys are Craft language codes and the values are Faker language codes.
     ```php
     <?php
 
-    use panlatent\craft\element\generator\value\Context;
+    use panlatent\craft\element\generator\value\Faker;
 
-    Event::on(Context::class, Context::EVENT_REGISTER_PROVIDERS, function(RegisterProvidersEvent $event) {
+    Event::on(Faker::class, Faker::EVENT_REGISTER_PROVIDERS, function(RegisterProvidersEvent $event) {
         $event->providers[] = YourProvider::class;
     })
     ```
@@ -136,11 +138,13 @@ The keys are Craft language codes and the values are Faker language codes.
 
     ```php
     'context' => [
-        'faker' => [
-            'providers' => [
-                YourProvider::class,
-            ]
-        ],
+        'components' => [
+            'faker' => [
+                'providers' => [
+                    YourProvider::class,
+                ]
+            ],
+        ]
     ],
     ```
 
@@ -151,6 +155,19 @@ Random is able to randomly select some data from elements, options or even CSV.
 ##### ChatGPT
 
 ### `context`
+
+Defines a configuration array of Context objects. The Context class is actually a [Service Locator](https://www.yiiframework.com/doc/guide/2.0/en/concept-service-locator). 
+Just like an application, you can modify components or add new components by configuring `components`.
+
+The `class` key is the type of Context class. If the value is not set, it defaults to `panlatent\craft\element\generator\value\Context`.
+
+```php
+'context' => [
+    'class' => panlatent\craft\element\generator\value\Context::class,
+    'components' => [
+    ],
+],
+```
 
 ### `scenario`
 

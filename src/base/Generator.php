@@ -7,6 +7,7 @@ use craft\base\ElementInterface;
 use craft\base\FieldInterface;
 use craft\events\ElementEvent;
 use craft\fields\BaseRelationField;
+use craft\helpers\ArrayHelper;
 use panlatent\craft\element\generator\DefaultValueProvider;
 use panlatent\craft\element\generator\value\Context;
 use panlatent\craft\element\generator\ValueBag;
@@ -43,11 +44,7 @@ abstract class Generator extends Component implements GeneratorInterface
 
     public function __construct($config = [])
     {
-        $contextConfig = ['class' => Context::class];
-        if (isset($config['context'])) {
-            $contextConfig = array_merge($contextConfig, $config['context']);
-            unset($config['context']);
-        }
+        $contextConfig = array_merge(['class' => Context::class], ArrayHelper::remove($config, 'context', []));
         $this->context = Craft::createObject($contextConfig, [$this]);
 
         $defaultValuesConfig = ['class' => DefaultValueProvider::class];

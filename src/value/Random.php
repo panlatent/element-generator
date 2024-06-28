@@ -4,11 +4,8 @@ namespace panlatent\craft\element\generator\value;
 
 use Craft;
 use craft\base\ElementInterface;
-use craft\base\FieldInterface;
 use craft\fields\BaseOptionsField;
 use craft\fields\BaseRelationField;
-use craft\fields\Date;
-use craft\fields\Lightswitch;
 use craft\fields\Matrix;
 use craft\fields\Money;
 use craft\helpers\ElementHelper;

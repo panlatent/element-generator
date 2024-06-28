@@ -2,6 +2,12 @@
     "name": "panlatent/element-generator",
     "type": "craft-plugin",
     "license": "proprietary",
+    "authors": [
+        {
+            "name": "Panlatent",
+            "homepage": "https://panlatent.com"
+        }
+    ],
     "support": {
         "email": "panlatent@gmail.com",
         "issues": "https://github.com/panlatent/element-generator/issues?state=open",
