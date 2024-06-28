@@ -65,6 +65,7 @@ We provide a `context` parameter to assist in generating values.
 `Context` is a helper class that helps you generate values. 
 
 + `$ctx->faker` provides common methods for generating data, which you can extend. Powered by [fakerphp/faker](https://github.com/fakerphp/faker)
++ `$ctx->openai` provides content generation powered by OpenAI/ChatGPT.
 + `$ctx->random` Provides the ability to extract data from common data (fields, files, etc.).
 
 The preferred way to generate a value is to get it from Faker.
@@ -152,7 +153,67 @@ The keys are Craft language codes and the values are Faker language codes.
 
 Random is able to randomly select some data from elements, options or even CSV.
 
-##### ChatGPT
+##### OpenAI
+
+!!! warning
+
+    Currently, this is an experimental feature. Feedback and suggestions are always welcome.
+
+We provide a simple component to call OpenAI API and compatible APIs. 
+Use `$ctx->openai->generate()` to generate complex content.
+
+an example of generating a job entry:
+
+```php
+'values' => function (Context $ctx) {
+    $title = $ctx->faker->jobTitle();
+    return [
+        'title' => $title,
+        'details' => $ctx->openai->generate('Write a job detail, your title is a' . $title),
+    ];
+},
+```
+
+To use this feature, you must configure your API Key, which can be done in the following two ways:
+
+=== "Current Generator"
+
+    ```php
+    'context' => [
+        'components' => [
+            'openai' => [
+                'apiKey' => 'your-api-key',
+            ]
+        ]
+    ]
+    ```
+
+=== "Global"
+
+    ```php
+    'default' => [
+        'context' => [
+            'components' => [
+                'openai' => [
+                    'apiKey' => 'your-api-key',
+                ]
+            ]
+        ]
+    ]
+    ```
+
+If you want to change the defaults or use the compatibility API, you may need to configure `baseUrl` and `model`. 
+Environment variables are always available and you can configure them once and for all:
+
+```php
+'openai' => [
+    'baseUrl' => '$OPENAI_API_BASE_URL',
+    'apiKey' => '$OPENAI_API_KEY',
+    'model' => '$OPENAI_API_MODEL',
+]
+```
+
+Then, add them in an environment variable or `.env` file.
 
 ### `context`
 
