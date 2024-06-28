@@ -3,6 +3,7 @@
 namespace panlatent\craft\element\generator\value;
 
 use Craft;
+use craft\helpers\ArrayHelper;
 use Faker\Factory;
 use Faker\Generator as FakerGenerator;
 use panlatent\craft\element\generator\base\Generator;
@@ -16,6 +17,8 @@ use yii\base\Component;
 class Context extends Component
 {
     public const EVENT_REGISTER_PROVIDERS = 'registerProviders';
+
+    protected array $fakerOptions = [];
     
     private ?FakerGenerator $_faker = null;
 
@@ -23,6 +26,7 @@ class Context extends Component
 
     public function __construct(public readonly Generator $generator, $config = [])
     {
+        $this->fakerOptions = ArrayHelper::remove($config, 'faker', []);
         parent::__construct($config);
     }
 
@@ -42,15 +46,6 @@ class Context extends Component
         return $this->_random;
     }
 
-    protected function getFakerLocaleName(string $language): string
-    {
-        return match($language) {
-            'en' => 'en_US',
-            'zh' => 'zh_CN',
-            default => $language
-        };
-    }
-
     private function createFaker(string $language = ''): FakerGenerator
     {
         $language = $language ?: Craft::$app->getTargetLanguage();
@@ -60,12 +55,32 @@ class Context extends Component
         $event = new RegisterProvidersEvent([
             'faker' => $faker
         ]);
+
         $this->trigger(self::EVENT_REGISTER_PROVIDERS, $event);
         foreach ($event->providers as $provider) {
             $faker->addProvider($provider);
         }
 
+        if (!empty($this->fakerOptions['providers'])) {
+            foreach ($this->fakerOptions['providers'] as $provider) {
+                $faker->addProvider($provider);
+            }
+        }
+
         return $faker;
     }
 
+    private function getFakerLocaleName(string $language): string
+    {
+        if (isset($this->fakerOptions['locale'])) {
+            return $this->fakerOptions['locale'];
+        }
+
+        $map = [
+            'en' => 'en_US',
+            'zh' => 'zh_CN'
+        ] + $this->fakerOptions['languages'] ?? [];
+
+        return $map[$language] ?? 'en_US';
+    }
 }

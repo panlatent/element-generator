@@ -10,8 +10,7 @@ use panlatent\craft\element\generator\ValueBag;
 
 trait ElementAttributes
 {
-    public mixed $title;
-
+//    public mixed $title;
     public ?string $site = null;
 
     public string $scenario = Element::SCENARIO_LIVE;
